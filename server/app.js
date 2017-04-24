@@ -1,28 +1,26 @@
+'use strict';
+
 const express = require('express');
 var path = require('path');
 const app = express();
 const Engine = require('./lib/engine');
-
-const HomePageController = require('./controllers/home-page-controller');
-const Page = require('./components/page');
+const defineRoutes = require('./define-routes');
+const registerComponents = require('./register-components');
 
 const engine = new Engine(app);
-engine.registerComponent('page', Page);
-const ro = require('./lib/ro')(engine);
 
-const homePageController = new HomePageController();
+// set directory to serve static content
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.engine('ro', ro);
+// set view directory
 app.set('views', path.join(__dirname, 'views'));
 
-// app.get('/', function (req, res) {
-//   const modelAndView = homePageController.handle();
-//   res.render(modelAndView.getViewName(), modelAndView.getModel());
-// });
+// register rogue one view engine
+const ro = require('./lib/ro')(engine);
+app.engine('ro', ro);
 
-engine.route(
-  '/', Engine.Method.GET, homePageController.handle.bind(homePageController)
-);
+defineRoutes(engine);
+registerComponents(engine);
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

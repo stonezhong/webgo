@@ -1,3 +1,5 @@
+'use strict';
+
 const Method = {
     GET: Symbol('GET'),
     PUT: Symbol('PUT'),

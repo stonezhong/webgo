@@ -1,0 +1,28 @@
+{
+  "name": "webgo",
+  "version": "1.0.0",
+  "description": "Play GO online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stonezhong/webgo.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stonezhong/webgo/issues"
+  },
+  "homepage": "https://github.com/stonezhong/webgo#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "hbs": "^4.0.1",
+    "jquery": "^3.2.1",
+    "jsdom": "^9.12.0",
+    "lodash": "^4.17.4",
+    "rogueone": "file:///mnt/DATA_DISK/home/mylab/projects/rogueone"
+  }
+}

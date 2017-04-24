@@ -1,18 +1,11 @@
-# webgo
-
-# structure
-## brief
-* When a request comes in, it is dispatched to different controller based on routing
-* A controller returns ModelAndView, which tells which view to use and the model passed to the view
-* A view resolver find the real view based on the view name.
-
-# Directories
-```text
-|
-+-- controllers
-|
-+-- views
-|
-+-- lib
+# How do I run the server?
 
 ```
+git clone git@github.com:stonezhong/webgo.git
+cd webgo
+npm install
+./build-client.sh
+npm start
+```
+
+Then use a broser to open http://localhost:3000/

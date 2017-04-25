@@ -1,14 +1,9 @@
 'use strict';
 
-const { Component } = require('rogueone');
-const template = 
-`
-<div>
-</div>
-`;
+import { Component } from 'rogueone';
+const template = `<div>this is a board</div>`;
 
-console.log(Component);
-class Board extends Component {
+export default class Board extends Component {
     constructor(module, model, parentComponent) {
         super(module, model, parentComponent);
     }
@@ -18,5 +13,3 @@ class Board extends Component {
         return $(template)[0];
     }
 }
-
-module.exports = Board;

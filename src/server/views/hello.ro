@@ -9,7 +9,6 @@
 
 <body>
     <page data-model="{x: '1', y: '2'}"></page>
-    <h1>Hello Tomcat</h1>
 
     <div id='app'>
         {{ this.message }}

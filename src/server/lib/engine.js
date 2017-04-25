@@ -11,7 +11,7 @@ const Method = {
     CONNECT: Symbol('CONNECT'),
 };
 
-class Engine {
+export default class Engine {
     constructor(app) {
         this._app = app;
         this._components = {};
@@ -51,5 +51,3 @@ class Engine {
 }
 
 Engine.Method = Method;
-
-module.exports = Engine;

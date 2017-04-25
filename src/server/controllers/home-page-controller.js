@@ -1,6 +1,6 @@
 'use strict';
 
-class HomePageController {
+export default class HomePageController {
     handle(input) {
         return {
             viewName: 'hello.ro',
@@ -11,5 +11,3 @@ class HomePageController {
         }
     }
 }
-
-module.exports = HomePageController;

@@ -1,10 +1,10 @@
 'use strict';
 
-const Engine = require('./lib/engine');
-const HomePageController = require('./controllers/home-page-controller');
+import Engine from './lib/engine';
+import HomePageController from './controllers/home-page-controller';
 const homePageController = new HomePageController();
 
-module.exports = (engine) => {
+export default function(engine) {
     engine.route(
         '/', Engine.Method.GET, homePageController.handle.bind(homePageController)
     );

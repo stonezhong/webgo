@@ -13,6 +13,7 @@
 
     <div id='app'>
         {{ this.message }}
+        <board></board>
     </div>
 </body>
 

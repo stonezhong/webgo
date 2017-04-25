@@ -1,6 +1,7 @@
 'use strict';
 
-const { Component } = require('rogueone');
+import { Component } from 'rogueone';
+
 const template = 
 `
 <div>
@@ -9,7 +10,7 @@ const template =
 </div>
 `;
 
-class Page extends Component {
+export default class Page extends Component {
     constructor(module, model, parentComponent) {
         super(module, model, parentComponent);
     }
@@ -19,5 +20,3 @@ class Page extends Component {
         return $(template)[0];
     }
 }
-
-module.exports = Page;

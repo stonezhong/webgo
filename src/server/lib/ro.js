@@ -1,11 +1,10 @@
 'use strict';
 
-const $ = require('jquery');
-const _ = require('lodash');
-const fs = require('fs');
-const jsdom = require("jsdom");
-
-const rogueone = require('rogueone');
+import $ from 'jquery';
+import _ from 'lodash';
+import fs from 'fs';
+import jsdom from 'jsdom';
+import { Module } from 'rogueone';
 
 function render(engine, filePath, options, callback) {
     fs.readFile(filePath, function(err, content) {
@@ -26,8 +25,8 @@ function render(engine, filePath, options, callback) {
                         return;
                     }
 
-                    const module = new rogueone.Module({
-                        runAt: rogueone.Module.RUN_AT_SERVER
+                    const module = new Module({
+                        runAt: Module.RUN_AT_SERVER
                     });
 
                     _.forEach(engine.getComponents(), function(componentClass, tagName) {
@@ -47,8 +46,8 @@ function render(engine, filePath, options, callback) {
     });
 }
 
-module.exports = function(engine) {
+export default function(engine) {
     return function(filePath, options, callback) {
         render(engine, filePath, options, callback);
     }
-};
+}

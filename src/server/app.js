@@ -13,7 +13,7 @@ const app = express();
 const engine = new Engine(app);
 
 // set directory to serve static content
-app.use(express.static(path.join(appRoot, '../public')));
+app.use(express.static(path.join(appRoot, 'public')));
 
 // set view directory
 app.set('views', path.join(appRoot, 'src/server/views'));

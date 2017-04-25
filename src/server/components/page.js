@@ -5,8 +5,8 @@ import { Component } from 'rogueone';
 const template = 
 `
 <div>
-    <p>x={[{this.x}]}</p>
-    <p>y={[{this.y}]}</p>
+    <p>x={[{model.x}]}</p>
+    <p>y={[{model.y}]}</p>
 </div>
 `;
 

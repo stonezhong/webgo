@@ -11,17 +11,8 @@ const GRID_SIZE = 40;
 const START_X = 6;
 const START_Y = 6;
 
-const x = 18;
-const y = 18;
-
 const template = `
-<div style="
-    width: 768px;
-    height: 768px;
-    background-image: url('images/board-1024x1024.png');
-    background-size: cover;
-    position: relative;
-">
+<div class="board">
 `;
 
 
@@ -42,13 +33,10 @@ export default class Board extends Component {
         return `
             <img
                 src="${imgSrc}" 
+                class="stone"
                 style="
                     left: ${START_X + x * GRID_SIZE}px; 
                     top: ${START_Y + y * GRID_SIZE}px; 
-                    width: ${STONE_SIZE}px; 
-                    height: ${STONE_SIZE}px;
-                    display: block;
-                    position: absolute;
             ">
         `;
     }

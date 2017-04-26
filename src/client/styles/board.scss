@@ -5,6 +5,10 @@ $stone-size: 35px;
     height: $stone-size;
     display: block;
     position: absolute;
+
+    &--empty {
+        display: none;
+    }
 }
 
 .board {

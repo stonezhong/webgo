@@ -1,10 +1,7 @@
 'use strict';
 
 import { Component } from 'rogueone';
-
-const COLOR_BLACK = Symbol('BLACK');
-const COLOR_WHITE = Symbol('WHITE');
-const COLOR_EMPTY = Symbol('EMPTY');
+import StoneModel from '../models/stone-model';
 
 const STONE_SIZE = 35;
 const GRID_SIZE = 40;
@@ -22,18 +19,19 @@ export default class Board extends Component {
     }
 
     stone(x, y, color) {
-        let imgSrc = "";
-        if (color === COLOR_BLACK) {
-            imgSrc = "images/black-stone.png";
-        } else if (color === COLOR_WHITE) {
-            imgSrc = "images/white-stone.png";
-        } else {
-            imgSrc = "";
+        let imgSrc = '';
+        let colorModifier = 'stone--empty';
+        if (color === StoneModel.Color.BLACK) {
+            imgSrc = 'images/black-stone.png';
+            colorModifier = 'stone--black';
+        } else if (color === StoneModel.Color.WHITE) {
+            imgSrc = 'images/white-stone.png';
+            colorModifier = 'stone--white';
         }
         return `
             <img
                 src="${imgSrc}" 
-                class="stone"
+                class="stone ${colorModifier}"
                 style="
                     left: ${START_X + x * GRID_SIZE}px; 
                     top: ${START_Y + y * GRID_SIZE}px; 
@@ -44,9 +42,11 @@ export default class Board extends Component {
     render(element) {
         const $ = this.module.$;
         let t = template;
+        const model = this.getModel();
         for (let x = 0; x < 19; x ++) {
             for (let y = 0; y < 19; y ++) {
-                t += this.stone(x, y, ((x + y)%2 === 0)?COLOR_BLACK:COLOR_WHITE);
+                const color = model.getColor(x, y);
+                t += this.stone(x, y, color);
             }
         }
         t += "</div>";

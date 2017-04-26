@@ -13,7 +13,7 @@
 
     <div id='app'>
         {{ model.message }}
-        <board></board>
+        <board data-model="model.board"></board>
     </div>
 </body>
 

@@ -20,7 +20,8 @@ $(function() {
 
     // let's initialize the application model
     const boardModel = new BoardModel();
-    boardModel.setColor(9, 9, StoneModel.Color.BLACK);
+    const stoneModel = new StoneModel(StoneModel.Color.WHITE);
+    boardModel.putStone(9, 9, stoneModel);
 
     const appElement = document.getElementById('app');
     module.bootstrap($, window, appElement, { message: 'hello world', board: boardModel});

@@ -1,6 +1,11 @@
 'use strict';
 import StoneModel from './stone-model';
 
+function getIndexFromPosition(boardModel, x, y) {
+    const index = y * boardModel.size + x;
+    return index;
+}
+
 export default class BoardModel {
     constructor() {
         this.size = 19;
@@ -8,20 +13,24 @@ export default class BoardModel {
 
         for (let x = 0; x < this.size; x ++) {
             for (let y = 0; y < this.size; y ++) {
-                this.stones.push(new StoneModel(x, y, StoneModel.Color.EMPTY));
+                this.stones.push(null);
             }
         }
     }
 
-    setColor(x, y, color) {
-        let index = y * this.size + x;
-        const stone = this.stones[index];
-        stone.setColor(color);
+    getSize() {
+        return this.size;
     }
 
-    getColor(x, y) {
-        let index = y * this.size + x;
-        const stone = this.stones[index];
-        return stone.getColor();
+    putStone(x, y, stoneModel) {
+        this.stones[getIndexFromPosition(this, x, y)] = stoneModel;
+    }
+
+    removeStone(x, y) {
+        this.stones[getIndexFromPosition(this, x, y)] = null;
+    }
+
+    getStone(x, y) {
+        return this.stones[getIndexFromPosition(this, x, y)];
     }
 }

@@ -3,13 +3,9 @@
 export default class StoneModel {
     /**
      * 
-     * @param {Number} x 
-     * @param {Number} y 
      * @param {StoneModel.Color} color 
      */
-    constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
+    constructor(color) {
         this.color = color;
     }
 
@@ -20,10 +16,13 @@ export default class StoneModel {
     getColor() {
         return this.color;
     }
+
+    isBlack() {
+        return (this.color === StoneModel.Color.BLACK);
+    }
 }
 
 StoneModel.Color = {
     BLACK: Symbol('BLACK'),
     WHITE: Symbol('WHITE'),
-    EMPTY: Symbol('EMPTY'),
 };

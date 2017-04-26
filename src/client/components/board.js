@@ -8,48 +8,44 @@ const GRID_SIZE = 40;
 const START_X = 6;
 const START_Y = 6;
 
-const template = `
-<div class="board">
-`;
-
-
 export default class Board extends Component {
     constructor(module, model, parentComponent) {
         super(module, model, parentComponent);
     }
 
-    stone(x, y, color) {
-        let imgSrc = '';
-        let colorModifier = 'stone--empty';
-        if (color === StoneModel.Color.BLACK) {
-            imgSrc = 'images/black-stone.png';
-            colorModifier = 'stone--black';
-        } else if (color === StoneModel.Color.WHITE) {
-            imgSrc = 'images/white-stone.png';
-            colorModifier = 'stone--white';
-        }
-        return `
+    renderStone($, $boardElement, x, y, stoneModel) {
+        const template = 
+        `
             <img
-                src="${imgSrc}" 
-                class="stone ${colorModifier}"
+                src="${this.getStoneImgSrc(stoneModel)}" 
+                class="stone"
                 style="
                     left: ${START_X + x * GRID_SIZE}px; 
-                    top: ${START_Y + y * GRID_SIZE}px; 
+                    top:  ${START_Y + y * GRID_SIZE}px; 
             ">
         `;
+        const $stoneElement = $(template);
+        $boardElement.append($stoneElement);
+    }
+
+    getStoneImgSrc(stoneModel) {
+        return stoneModel.isBlack() ? 'images/black-stone.png' : 'images/white-stone.png';
     }
 
     render(element) {
         const $ = this.module.$;
-        let t = template;
-        const model = this.getModel();
-        for (let x = 0; x < 19; x ++) {
-            for (let y = 0; y < 19; y ++) {
-                const color = model.getColor(x, y);
-                t += this.stone(x, y, color);
+        const $boardElement = $('<div class="board"></div>');
+        const boardModel = this.getModel();
+
+        for (let x = 0; x < boardModel.getSize(); x ++) {
+            for (let y = 0; y < boardModel.getSize(); y ++) {
+                const stoneModel = boardModel.getStone(x, y);
+                if (stoneModel === null) {
+                    continue;
+                }
+                this.renderStone($, $boardElement, x, y, stoneModel);
             }
         }
-        t += "</div>";
-        return $(t)[0];
+        return $boardElement[0];
     }
 }
